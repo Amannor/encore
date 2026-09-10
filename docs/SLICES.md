@@ -23,6 +23,8 @@ Work proceeds one slice per agent session. Split a slice here if it is too large
 
 ## Slice 1 — Freeze the archaeology (docs only)
 
+**Status:** complete (see [STATUS.md](STATUS.md))
+
 **Goal:** A complete map before anyone “fixes” anything. **No functional code changes.**
 
 Produce [ARCHITECTURE.md](ARCHITECTURE.md) and [INVENTORY.md](INVENTORY.md) covering:

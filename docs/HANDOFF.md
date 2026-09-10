@@ -2,10 +2,11 @@
 
 A new agent (or human) should be able to continue from a clone of this repository without the original planning chat.
 
-You still need two things from a human that this repo cannot decide:
+You still need one thing from a human that this repo cannot decide:
 
-1. **GitHub `origin` remote** — where *this* continuation lives. `upstream` is already the archived original.
-2. **Final product name** — working title is **Encore** (ADR-001). Alternatives: Reprise, Revival, Afterpiece.
+1. **Final product name** — working title is **Encore** (ADR-001). Alternatives: Reprise, Revival, Afterpiece.
+
+`origin` is `git@github.com:Amannor/encore.git` (https://github.com/Amannor/encore). `upstream` is the archived original. Slice 2 is blocked until **full Xcode** is installed (Command Line Tools alone are not enough; see [INVENTORY.md](INVENTORY.md)).
 
 ## What this project is
 
@@ -39,18 +40,14 @@ Do **only** the current slice. If it is too big, split it in `SLICES.md` and fin
 ## Git remotes
 
 ```sh
+git remote get-url origin
+# expected: git@github.com:Amannor/encore.git
+
 git remote get-url upstream
 # expected: https://github.com/eczarny/spectacle.git
 ```
 
-`upstream` must keep pointing at the archived original so history and tags stay attributable. Add `origin` when the continuation has a GitHub repository:
-
-```sh
-git remote add origin git@github.com:<you>/<this-repo>.git
-git push -u origin HEAD
-```
-
-Do not force-push to `upstream`. Do not flatten original history.
+`upstream` must keep pointing at the archived original so history and tags stay attributable. Do not force-push to `upstream`. Do not flatten original history.
 
 ## Verify original history is present
 

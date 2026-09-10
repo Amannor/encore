@@ -17,7 +17,8 @@ Spectacle itself is [no longer maintained](https://github.com/eczarny/spectacle#
 | Intended min macOS | **13+** (not yet applied in the Xcode project) |
 | Bundle ID | TBD (will not ship as `com.divisiblebyzero.Spectacle`) |
 | Auto-update | Disabled for unsigned builds; will not use spectacleapp.com’s Sparkle feed |
-| Current work | See [docs/STATUS.md](docs/STATUS.md) |
+| Repository | [github.com/Amannor/encore](https://github.com/Amannor/encore) |
+| Current work | Slice 1 complete; Slice 2 needs full Xcode. See [docs/STATUS.md](docs/STATUS.md) |
 
 Maintainers and agents: start at [docs/HANDOFF.md](docs/HANDOFF.md).
 
