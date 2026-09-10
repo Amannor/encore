@@ -1,0 +1,76 @@
+# Handoff
+
+A new agent (or human) should be able to continue from a clone of this repository without the original planning chat.
+
+You still need two things from a human that this repo cannot decide:
+
+1. **GitHub `origin` remote** — where *this* continuation lives. `upstream` is already the archived original.
+2. **Final product name** — working title is **Encore** (ADR-001). Alternatives: Reprise, Revival, Afterpiece.
+
+## What this project is
+
+Bring Spectacle back as a **minimal, secure, reproducibly built macOS window manager that preserves original Spectacle behavior**.
+
+- Unofficial continuation of [eczarny/spectacle](https://github.com/eczarny/spectacle) (archived January 2023, last release **1.2**).
+- Keep original Objective-C + bundled JavaScript geometry. Do not rewrite in Swift.
+- Do not copy Rectangle features. Rectangle is a reading reference for modern macOS quirks only.
+- MIT license; keep Eric Czarny’s copyright.
+- First public cut may be unsigned / ad-hoc. Notarization later. No Sparkle against spectacleapp.com.
+
+## Start of every session
+
+Read, in order:
+
+1. [STATUS.md](STATUS.md) — current slice, last completed slice, blockers
+2. [SLICES.md](SLICES.md) — acceptance criteria for the slice you are on
+3. [DECISIONS.md](DECISIONS.md) — ADRs
+4. [../AGENTS.md](../AGENTS.md) — conventions and stop conditions
+
+Do **only** the current slice. If it is too big, split it in `SLICES.md` and finish the first half.
+
+## End of every session
+
+- Mark the slice done or partially done in `STATUS.md`
+- Record any new ADR in `DECISIONS.md`
+- List exact commands that pass (build, test, analysis)
+- List what the next agent should **not** redo
+- Do **not** start the next slice unless the user asks
+
+## Git remotes
+
+```sh
+git remote get-url upstream
+# expected: https://github.com/eczarny/spectacle.git
+```
+
+`upstream` must keep pointing at the archived original so history and tags stay attributable. Add `origin` when the continuation has a GitHub repository:
+
+```sh
+git remote add origin git@github.com:<you>/<this-repo>.git
+git push -u origin HEAD
+```
+
+Do not force-push to `upstream`. Do not flatten original history.
+
+## Verify original history is present
+
+```sh
+git merge-base --is-ancestor e75c341ec2cba179c1bb8aa726a870c4132207df HEAD && echo "original history present"
+git log --oneline --max-count=5
+git tag --list '1.*'
+```
+
+Import tip of archived `master` was `e75c341` (tag `1.2` is `eacf5bb`, an ancestor of that tip).
+
+## What is intentionally unfinished
+
+| Topic | When |
+| --- | --- |
+| Build on current Xcode / universal binary / CI | Slice 2 |
+| Sparkle disabled, hardened runtime, `SMAppService` | Slice 3 |
+| Golden geometry tests, compatibility notes | Slice 4 |
+| Final name, bundle ID, settings importer | Slice 5 |
+| GitHub Release zip + checksums | Slice 6 |
+| Maintenance automation / outreach | Slice 7 |
+
+The imported tree still builds (or fails to build) as original Spectacle: Carthage, Sparkle 1.22.0, bundle ID `com.divisiblebyzero.Spectacle`, min OS 10.9, Intel-era Xcode project. That is expected until later slices.

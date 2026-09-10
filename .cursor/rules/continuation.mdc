@@ -1,0 +1,27 @@
+---
+description: Continuation protocol — one slice per session, read STATUS first, stop at slice boundary
+alwaysApply: true
+---
+
+# Continuation protocol
+
+This is an unofficial Spectacle continuation (working title Encore). AI is the maintainer’s tool, not the product story.
+
+## Start of session
+
+Read in order: `docs/STATUS.md`, `docs/SLICES.md`, `docs/DECISIONS.md`, `AGENTS.md`. Do only the current slice. Follow `docs/HANDOFF.md` if you are new to the repo.
+
+## Stop
+
+One slice per agent instance. If the slice is too big, split it in `docs/SLICES.md` and finish the first half. Do not start the next slice unless the user asks.
+
+## End of session
+
+Update `docs/STATUS.md` (done or partial, commands that passed, what not to redo). Add ADRs to `docs/DECISIONS.md`. Do not edit the original plan file.
+
+## Hard limits
+
+- Keep Objective-C + bundled JS calculators. No Swift rewrite. No Rectangle features (oracle only).
+- Do not enable Sparkle on unsigned builds. Do not use spectacleapp.com’s appcast.
+- Do not change window math to make an old test “look right.”
+- Keep Eric Czarny’s MIT copyright on original files. Do not flatten imported git history.
