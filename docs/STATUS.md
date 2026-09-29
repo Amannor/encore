@@ -2,7 +2,18 @@
 
 **Last completed slice:** 3 — Security hardening without new features  
 **Current / next slice:** 4 — Behavior lock and Rectangle as oracle  
-**Updated:** 2026-09-29
+**Updated:** 2026-09-29  
+**Branch:** `cursor/build-and-xctest` at `f35f42f` (pushed). Do not return to `main` for this work.
+
+## Next session (Slice 4 only)
+
+Read [SLICES.md](SLICES.md) Slice 4, then [DECISIONS.md](DECISIONS.md) and [HANDOFF.md](HANDOFF.md). Do not redo Slices 2–3.
+
+- Geometry specs already exist under `SpectacleSpecs/Sources/*WindowCalculationSpec.m`. JS calculators are `Spectacle/Resources/Window Position Calculations/*.js`. Keep those files as the behavior spec. Do not change expected frames or window math.
+- Add a `2560×1440` case and a notched / menu-bar visible-frame case. Write `docs/COMPATIBILITY.md` (one row per action; Rectangle is an oracle only, ADR-006) and `docs/MANUAL_TEST.md`.
+- Intentional differences should be empty or only OS-forced.
+- Tests: `xcodebuild -scheme Spectacle -destination 'platform=macOS' -configuration Debug test -derivedDataPath DerivedData ONLY_ACTIVE_ARCH=YES`
+- Xcode 27.0 is already selected. Do not install the iOS simulator.
 
 ## Blockers / open questions for humans
 
