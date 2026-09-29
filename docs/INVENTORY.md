@@ -121,7 +121,7 @@ version: 26.6.0.0.1781586589
 
 **Baseline result:** `xcodebuild` does not run. There is no Xcode.app. Carthage has not been bootstrapped (`Carthage/Build` absent). Warnings, architectures, and analyzer findings are therefore **not** available on this machine until full Xcode is installed.
 
-Slice 2 blocker: install Xcode (current stable) and `sudo xcode-select -s /Applications/Xcode.app/Contents/Developer`, then re-run `xcodebuild -list` / `xcodebuild -scheme Spectacle -destination 'platform=macOS' build` and record the *compiler* failures (expected: missing Carthage/Sparkle, 32/64-bit / SDK issues, deprecated `LSSharedFileList`, etc.).
+The 2026-09-10 baseline above is historical. As of 2026-09-29, Xcode 27.0 is installed and `xcodebuild -scheme Spectacle build` succeeds (`x86_64 arm64`). See [STATUS.md](STATUS.md).
 
 ## Static tools for later slices
 

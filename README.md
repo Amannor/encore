@@ -2,7 +2,7 @@
 
 Unofficial continuation of [Spectacle](https://github.com/eczarny/spectacle), Eric Czarny’s macOS window manager.
 
-This is **not** a release. There is no downloadable build yet. The tree is the original Spectacle 1.2 sources plus continuation docs; it has not been modernized to current Xcode.
+This is **not** a release. There is no downloadable build yet. The app builds on current Xcode and `SpectacleSpecs` passes.
 
 If you loved Spectacle, the goal is that app, maintained: same Objective-C architecture, same JavaScript window calculations, same actions. It is **not** [Rectangle](https://github.com/rxhanson/Rectangle). Rectangle is a different, actively maintained window manager; this project does not copy its features.
 
@@ -14,11 +14,11 @@ Spectacle itself is [no longer maintained](https://github.com/eczarny/spectacle#
 | --- | --- |
 | Public name | TBD (working title **Encore**) |
 | Last original release | Spectacle **1.2** |
-| Intended min macOS | **13+** (not yet applied in the Xcode project) |
+| Intended min macOS | **13+** (set in the Xcode project) |
 | Bundle ID | TBD (will not ship as `com.divisiblebyzero.Spectacle`) |
 | Auto-update | Disabled for unsigned builds; will not use spectacleapp.com’s Sparkle feed |
 | Repository | [github.com/Amannor/encore](https://github.com/Amannor/encore) |
-| Current work | Slice 1 complete; Slice 2 needs full Xcode. See [docs/STATUS.md](docs/STATUS.md) |
+| Current work | Tests pass (Slice 2b). Next is security hardening (Slice 3). See [docs/STATUS.md](docs/STATUS.md) |
 
 Maintainers and agents: start at [docs/HANDOFF.md](docs/HANDOFF.md).
 
@@ -64,13 +64,8 @@ Applications can also constrain window size. Spectacle (and this continuation) r
 
 ## Building
 
-The Xcode project is still the original Carthage-based Spectacle project. It is **not** expected to build cleanly on a current Mac until Slice 2. Do not treat a local compile failure as a regression against this continuation yet.
-
-Original steps, for archaeology only:
-
 ```sh
-carthage bootstrap --platform Mac
-open Spectacle.xcodeproj
+xcodebuild -scheme Spectacle -destination 'platform=macOS' test
 ```
 
 Upstream remote (archived original):

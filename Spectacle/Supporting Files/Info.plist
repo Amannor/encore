@@ -23,20 +23,12 @@
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
-	<string>10.9</string>
+	<string>13.0</string>
 	<key>LSUIElement</key>
 	<true/>
 	<key>NSMainNibFile</key>
 	<string>Spectacle</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>SUAllowsAutomaticUpdates</key>
-	<false/>
-	<key>SUEnableAutomaticChecks</key>
-	<true/>
-	<key>SUFeedURL</key>
-	<string>https://spectacleapp.com/updates/appcast.xml</string>
-	<key>SUPublicDSAKeyFile</key>
-	<string>dsa_public.pem</string>
 </dict>
 </plist>

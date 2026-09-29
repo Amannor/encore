@@ -6,7 +6,7 @@ You still need one thing from a human that this repo cannot decide:
 
 1. **Final product name** — working title is **Encore** (ADR-001). Alternatives: Reprise, Revival, Afterpiece.
 
-`origin` is `git@github.com:Amannor/encore.git` (https://github.com/Amannor/encore). `upstream` is the archived original. Slice 2 is blocked until **full Xcode** is installed (Command Line Tools alone are not enough; see [INVENTORY.md](INVENTORY.md)).
+`origin` is `git@github.com:Amannor/encore.git` (https://github.com/Amannor/encore). `upstream` is the archived original. The app builds with Xcode 27 and `SpectacleSpecs` passes. Next work is Slice 3.
 
 ## What this project is
 
@@ -63,11 +63,12 @@ Import tip of archived `master` was `e75c341` (tag `1.2` is `eacf5bb`, an ancest
 
 | Topic | When |
 | --- | --- |
-| Build on current Xcode / universal binary / CI | Slice 2 |
+| App build on current Xcode / universal binary | Slice 2 (done) |
+| `SpectacleSpecs` on XCTest, drop Carthage, CI | Slice 2b (done) |
 | Sparkle disabled, hardened runtime, `SMAppService` | Slice 3 |
 | Golden geometry tests, compatibility notes | Slice 4 |
 | Final name, bundle ID, settings importer | Slice 5 |
 | GitHub Release zip + checksums | Slice 6 |
 | Maintenance automation / outreach | Slice 7 |
 
-The imported tree still builds (or fails to build) as original Spectacle: Carthage, Sparkle 1.22.0, bundle ID `com.divisiblebyzero.Spectacle`, min OS 10.9, Intel-era Xcode project. That is expected until later slices.
+The app target builds on Xcode 27 as a universal binary (macOS 13+, Sparkle unlinked) and `SpectacleSpecs` runs on XCTest. Bundle ID is still `com.divisiblebyzero.Spectacle` until Slice 5.

@@ -12,10 +12,10 @@ static const NSTrackingAreaOptions kTrackingAreaOptions = (NSTrackingMouseEntere
                                                            | NSTrackingActiveWhenFirstResponder
                                                            | NSTrackingEnabledDuringMouseDrag);
 
-static const NSEventModifierFlags kCocoaModifierFlagsMask = (NSControlKeyMask
-                                                             | NSAlternateKeyMask
-                                                             | NSShiftKeyMask
-                                                             | NSCommandKeyMask);
+static const NSEventModifierFlags kCocoaModifierFlagsMask = (NSEventModifierFlagControl
+                                                             | NSEventModifierFlagOption
+                                                             | NSEventModifierFlagShift
+                                                             | NSEventModifierFlagCommand);
 
 @implementation SpectacleShortcutRecorder
 {
@@ -198,7 +198,10 @@ static const NSEventModifierFlags kCocoaModifierFlagsMask = (NSControlKeyMask
   NSBezierPath *roundedPath = [NSBezierPath bezierPathWithRoundedRect:rect xRadius:radius yRadius:radius];
   [NSGraphicsContext.currentContext saveGraphicsState];
   [roundedPath addClip];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
   [[NSColor windowFrameColor] set];
+#pragma clang diagnostic pop
   [NSBezierPath fillRect:rect];
   [NSGraphicsContext.currentContext restoreGraphicsState];
 }
@@ -332,7 +335,7 @@ static NSMutableDictionary<NSString *, id> *stringAttributesWithShadow(void)
   NSShadow *textShadow = [NSShadow new];
   NSMutableDictionary<NSString *, id> *stringAttributes = [NSMutableDictionary new];
   paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
-  paragraphStyle.alignment = NSCenterTextAlignment;
+  paragraphStyle.alignment = NSTextAlignmentCenter;
   textShadow.shadowColor = [NSColor whiteColor];
   textShadow.shadowOffset = NSMakeSize(0.0f, -1.0);
   textShadow.shadowBlurRadius = 0.0f;

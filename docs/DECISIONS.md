@@ -2,6 +2,15 @@
 
 Architecture Decision Records for this continuation. Newest first within each ID; do not silently reverse these in later slices.
 
+## ADR-009 — Warnings stay errors
+
+**Status:** accepted  
+**Date:** 2026-09-29
+
+`GCC_TREAT_WARNINGS_AS_ERRORS` stays `YES`. Do not turn it off to get a green build.
+
+Renames that keep the same values are allowed (modifier masks, control states, alert styles, status-item button). Calls whose replacement would change behavior stay on the old API with a local `-Wdeprecated-declarations` ignore until the slice that replaces them: `LSSharedFileList` (Slice 3, `SMAppService`), `NSKeyedArchiver` secure coding, and `NSColor.windowFrameColor`.
+
 ## ADR-001 — Product name (provisional)
 
 **Status:** accepted (provisional; finalize in Slice 5)  

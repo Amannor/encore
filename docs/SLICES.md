@@ -42,27 +42,43 @@ Produce [ARCHITECTURE.md](ARCHITECTURE.md) and [INVENTORY.md](INVENTORY.md) cove
 - ARCHITECTURE.md is enough that Slice 2 does not have to rediscover the JS engine.
 - Still no behavior change.
 
-## Slice 2 — Make it build and test on current Xcode
+## Slice 2 — Make the app build on current Xcode
 
-**Goal:** Universal binary + `SpectacleSpecs` green on a current Mac. Still no intentional behavior change.
+**Status:** complete (see [STATUS.md](STATUS.md))
 
-**Work (independently reviewable commits)**
+**Goal:** Universal `Spectacle.app` on a current Mac. Still no intentional behavior change.
 
-- Modernize `Spectacle.xcodeproj` for current Xcode (deployment target 13+, `arm64` + `x86_64`).
-- Replace Carthage with Swift Package Manager (or document why Carthage stays). Test deps may need replacing if Specta/Expecta will not build; **prefer keeping existing spec files** and swapping the runner to XCTest rather than rewriting assertions.
+**Done**
+
+- Deployment target 13.0, `ARCHS = $(ARCHS_STANDARD)` (`arm64` + `x86_64`).
+- Sparkle unlinked. `SUFeedURL` and the other Sparkle Info.plist keys removed.
+- Deprecated constants with the same values renamed. Login items, keyed archives, and `windowFrameColor` still use the old calls under a local deprecation ignore (ADR-009). Slice 3 replaces login items.
+
+**Acceptance**
+
+- `xcodebuild -scheme Spectacle -destination 'platform=macOS' build` succeeds.
+- The Debug binary is `x86_64 arm64`.
+- STATUS.md records the Xcode version and that Sparkle is disabled.
+
+## Slice 2b — Tests and CI
+
+**Status:** complete (see [STATUS.md](STATUS.md))
+
+**Goal:** `SpectacleSpecs` green, without Carthage.
+
+**Work**
+
+- Specta, Expecta, OCHamcrest, and OCMockito do not build here (no `Carthage/Build`). Port the existing spec files to XCTest. Keep the expected frames. `SpectacleWindowPositionManagerSpec` uses OCMockito and needs a hand port.
+- Drop Carthage (`Cartfile`, `Cartfile.resolved`) once nothing links those frameworks.
 - GitHub Actions: `macos-15` (or latest), `xcodebuild test`, no Travis.
-- Treat warning policy as an ADR: fail CI on new warnings once the baseline is cleaned, or gate with a recorded warning file.
-
-**Known landmines**
-
-- Login-item APIs and Sparkle 1 will likely fail hardened-runtime / modern SDK builds. Prefer **stubs / disable Sparkle in this slice** over “fixing” updates. Record that as a Slice 3 item, not a silent feature drop without a test/docs note.
-- Do not “fix” window math because a test looks old.
+- Remove `.travis.yml` when CI replaces it.
 
 **Acceptance**
 
 - `xcodebuild -scheme Spectacle -destination 'platform=macOS' test` passes on Apple Silicon.
 - CI runs that command.
-- STATUS.md records the exact Xcode version and any disabled features (Sparkle).
+
+Do not start Slice 3 until Slice 2b’s test acceptance is met. Do not change expected frames while porting specs.
 
 ## Slice 3 — Security hardening without new features
 

@@ -23,7 +23,10 @@
 {
   NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
   for (SpectacleShortcut *shortcut in shortcuts) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     NSData *shortcutData = [NSKeyedArchiver archivedDataWithRootObject:shortcut];
+#pragma clang diagnostic pop
     NSString *shortcutName = shortcut.shortcutName;
     if (![shortcutData isEqualToData:[userDefaults dataForKey:shortcutName]]) {
       [userDefaults setObject:shortcutData forKey:shortcutName];
@@ -65,7 +68,10 @@
 {
   NSMutableArray<SpectacleShortcut *> *shortcuts = [NSMutableArray new];
   for (NSData *shortcutData in dictionary.allValues) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     SpectacleShortcut *shortcut = [NSKeyedUnarchiver unarchiveObjectWithData:shortcutData];
+#pragma clang diagnostic pop
     [shortcuts addObject:[shortcut copyWithShortcutAction:action]];
   }
   return shortcuts;

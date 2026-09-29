@@ -1,5 +1,8 @@
 #import "SpectacleLoginItemHelper.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 @implementation SpectacleLoginItemHelper
 
 + (BOOL)isLoginItemEnabledForBundle:(NSBundle *)bundle
@@ -77,3 +80,5 @@
 }
 
 @end
+
+#pragma clang diagnostic pop

@@ -164,15 +164,20 @@
 
 - (BOOL)containsModifiers:(NSUInteger)modifiers
 {
-  return _shortcutModifiers == SpectacleConvertModifiersToCarbonIfNecessary(modifiers);
+  NSUInteger shortcutModifiers = SpectacleConvertModifiersToCarbonIfNecessary(_shortcutModifiers);
+  NSUInteger containedModifiers = SpectacleConvertModifiersToCarbonIfNecessary(modifiers);
+  if (containedModifiers == 0) {
+    return shortcutModifiers == 0;
+  }
+  return (shortcutModifiers & containedModifiers) == containedModifiers;
 }
 
 + (BOOL)validCocoaModifiers:(NSUInteger)modifiers
 {
-  return ((modifiers & NSAlternateKeyMask)
-          || (modifiers & NSCommandKeyMask)
-          || (modifiers & NSControlKeyMask)
-          || (modifiers & NSShiftKeyMask));
+  return ((modifiers & NSEventModifierFlagOption)
+          || (modifiers & NSEventModifierFlagCommand)
+          || (modifiers & NSEventModifierFlagControl)
+          || (modifiers & NSEventModifierFlagShift));
 }
 
 @end
