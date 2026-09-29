@@ -1,7 +1,7 @@
 # Status
 
-**Last completed slice:** 2b — Tests and CI  
-**Current / next slice:** 3 — Security hardening without new features  
+**Last completed slice:** 3 — Security hardening without new features  
+**Current / next slice:** 4 — Behavior lock and Rectangle as oracle  
 **Updated:** 2026-09-29
 
 ## Blockers / open questions for humans
@@ -90,6 +90,25 @@ lipo -archs DerivedData/Build/Products/Debug/Spectacle.app/Contents/MacOS/Specta
 - Do not re-write ARCHITECTURE.md / INVENTORY.md from scratch; amend if Slice 2 discovers a missed call site.
 - Do not change window JS, Sparkle feed, login items, or bundle ID as a side effect of “making it build” without documenting it (Slice 2 may **disable/stub Sparkle** if it blocks the build — that is allowed and must be noted in STATUS).
 - Do not re-enable Sparkle or put `SUFeedURL` back.
-- Do not bring Carthage, Specta, Expecta, OCHamcrest, or OCMockito back.
+- Do not bring Carthage, Specta, Expecta, OCHamcrest, OCMockito, or Sparkle back.
+- Do not put `disable-library-validation` on the Release entitlements (ADR-010).
 - Do not rewrite the geometry specs’ expected frames.
-- Do not start Slice 4 until Slice 3’s acceptance is met.
+- Do not start Slice 5 until Slice 4’s acceptance is met.
+
+## Slice 3 outcome
+
+Sparkle is gone from the binary, the menu, and the bundle (`dsa_public.pem` deleted). Login items use `SMAppService`. Release is ad-hoc with the hardened runtime. JavaScript still loads only bundled calculation scripts. Findings are in [THREAT_MODEL.md](THREAT_MODEL.md).
+
+### Commands that passed (2026-09-29, Slice 3)
+
+```sh
+xcodebuild -scheme Spectacle -destination 'platform=macOS' -configuration Debug test -derivedDataPath DerivedData ONLY_ACTIVE_ARCH=YES
+# ** TEST SUCCEEDED **
+
+xcodebuild -scheme Spectacle -destination 'platform=macOS' -configuration Release build -derivedDataPath DerivedData ONLY_ACTIVE_ARCH=YES
+# BUILD:0
+
+xcodebuild -scheme Spectacle -destination 'platform=macOS' -configuration Debug analyze -derivedDataPath DerivedData ONLY_ACTIVE_ARCH=YES
+# ANALYZE:0
+# one localizability warning in SpectacleAppDelegate.m, not fixed
+```

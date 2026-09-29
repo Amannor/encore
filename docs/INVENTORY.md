@@ -1,8 +1,21 @@
 # Inventory
 
-Privileged and sensitive surfaces in the imported Spectacle 1.2 tree. File paths are from this repository. **No functional code was changed for this document.**
+Privileged and sensitive surfaces. The tables below are the Slice 1 snapshot of the imported tree. The built-product notes are Slice 3 and match a Release build from 2026-09-29.
 
-This is the Slice 3 input list. Do not treat it as a completed audit.
+## Built product (Slice 3)
+
+Release app, ad-hoc signature, hardened runtime. `otool -L` links only system libraries: Foundation, libobjc, libSystem, AppKit, ApplicationServices, Carbon, CoreFoundation, CoreGraphics, CoreServices, JavaScriptCore, QuartzCore, ServiceManagement. No Sparkle.
+
+`codesign -d --entitlements :-` on Release:
+
+- `com.apple.security.cs.allow-jit`
+- `com.apple.security.automation.apple-events`
+
+Debug adds `com.apple.security.cs.disable-library-validation` and the injected `com.apple.security.get-task-allow`. Release sets `CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO`, so it does not include `get-task-allow`.
+
+Info.plist has `LSMinimumSystemVersion` 13.0, `LSUIElement` true, and `NSAppleEventsUsageDescription`. It has no `SUFeedURL` or other Sparkle keys. The bundle contains no `.pem`. The binary has no `spectacleapp.com` string. `Credits.rtf` still links to `https://twitter.com/spectacleapp`.
+
+Login items use `SMAppService`. See [THREAT_MODEL.md](THREAT_MODEL.md).
 
 ## External dependencies
 

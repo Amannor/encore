@@ -2,6 +2,13 @@
 
 Architecture Decision Records for this continuation. Newest first within each ID; do not silently reverse these in later slices.
 
+## ADR-010 — Debug may disable library validation
+
+**Status:** accepted  
+**Date:** 2026-09-29
+
+Release entitlements are `allow-jit` and `apple-events` only. Debug adds `com.apple.security.cs.disable-library-validation` so the ad-hoc `SpectacleSpecs` bundle can load into the hardened test host. Ad-hoc signatures have no team, and library validation treats them as different teams. Do not copy the Debug key into Release.
+
 ## ADR-009 — Warnings stay errors
 
 **Status:** accepted  

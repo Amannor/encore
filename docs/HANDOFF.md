@@ -6,7 +6,7 @@ You still need one thing from a human that this repo cannot decide:
 
 1. **Final product name** — working title is **Encore** (ADR-001). Alternatives: Reprise, Revival, Afterpiece.
 
-`origin` is `git@github.com:Amannor/encore.git` (https://github.com/Amannor/encore). `upstream` is the archived original. The app builds with Xcode 27 and `SpectacleSpecs` passes. Next work is Slice 3.
+`origin` is `git@github.com:Amannor/encore.git` (https://github.com/Amannor/encore). `upstream` is the archived original. The app builds with Xcode 27, `SpectacleSpecs` passes, and Slice 3 hardening is in. Next work is Slice 4.
 
 ## What this project is
 
@@ -65,7 +65,7 @@ Import tip of archived `master` was `e75c341` (tag `1.2` is `eacf5bb`, an ancest
 | --- | --- |
 | App build on current Xcode / universal binary | Slice 2 (done) |
 | `SpectacleSpecs` on XCTest, drop Carthage, CI | Slice 2b (done) |
-| Sparkle disabled, hardened runtime, `SMAppService` | Slice 3 |
+| Sparkle disabled, hardened runtime, `SMAppService` | Slice 3 (done) |
 | Golden geometry tests, compatibility notes | Slice 4 |
 | Final name, bundle ID, settings importer | Slice 5 |
 | GitHub Release zip + checksums | Slice 6 |

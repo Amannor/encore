@@ -82,6 +82,8 @@ Do not start Slice 3 until Slice 2b’s test acceptance is met. Do not change ex
 
 ## Slice 3 — Security hardening without new features
 
+**Status:** complete (see [STATUS.md](STATUS.md) and [THREAT_MODEL.md](THREAT_MODEL.md))
+
 **Goal:** A trustworthy unsigned app, not a Sparkle attack surface.
 
 **Work**

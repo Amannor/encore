@@ -18,7 +18,7 @@ Spectacle itself is [no longer maintained](https://github.com/eczarny/spectacle#
 | Bundle ID | TBD (will not ship as `com.divisiblebyzero.Spectacle`) |
 | Auto-update | Disabled for unsigned builds; will not use spectacleapp.com’s Sparkle feed |
 | Repository | [github.com/Amannor/encore](https://github.com/Amannor/encore) |
-| Current work | Tests pass (Slice 2b). Next is security hardening (Slice 3). See [docs/STATUS.md](docs/STATUS.md) |
+| Current work | Hardening is in (Slice 3). Next is the behavior lock (Slice 4). See [docs/STATUS.md](docs/STATUS.md) |
 
 Maintainers and agents: start at [docs/HANDOFF.md](docs/HANDOFF.md).
 

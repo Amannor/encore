@@ -24,10 +24,15 @@
 
 - (void)evaluateBundledScripts
 {
+  NSString *calculationDirectory = [[[NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"Window Position Calculations"] stringByStandardizingPath] stringByAppendingString:@"/"];
   NSArray<NSString *> *scriptPaths = [[NSBundle mainBundle] pathsForResourcesOfType:@"js"
                                                                         inDirectory:@"Window Position Calculations"];
   [scriptPaths enumerateObjectsUsingBlock:^(NSString *scriptPath, NSUInteger index, BOOL *stop) {
-    NSString *script = loadScriptAtPath(scriptPath);
+    NSString *standardizedPath = scriptPath.stringByStandardizingPath;
+    if (![standardizedPath hasPrefix:calculationDirectory]) {
+      return;
+    }
+    NSString *script = loadScriptAtPath(standardizedPath);
     if (script) {
       [self->_context evaluateScript:script];
     }

@@ -28,6 +28,8 @@
 	<true/>
 	<key>NSMainNibFile</key>
 	<string>Spectacle</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>Spectacle uses AppleScript to open Security &amp; Privacy settings so you can grant Accessibility access.</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>
