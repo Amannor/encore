@@ -1,0 +1,17 @@
+name: test-intel
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: macos-15-intel
+    steps:
+      - uses: actions/checkout@v4
+      - name: Machine
+        run: |
+          uname -m
+          sw_vers
+          xcodebuild -version
+      - name: Test
+        run: xcodebuild -scheme Spectacle -destination 'platform=macOS' test
