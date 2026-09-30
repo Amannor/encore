@@ -2,6 +2,9 @@ name: test-intel
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - cursor/build-and-xctest
 
 jobs:
   test:
