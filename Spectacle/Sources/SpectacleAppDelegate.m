@@ -2,6 +2,7 @@
 
 #import "SpectacleAccessibilityElement.h"
 #import "SpectacleDefaultShortcutHelpers.h"
+#import "SpectacleLegacyShortcutImporter.h"
 #import "SpectacleMigratingShortcutStorage.h"
 #import "SpectaclePreferencesController.h"
 #import "SpectacleScreenDetector.h"
@@ -87,6 +88,10 @@
   NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
   _blacklistedApplications = [NSSet setWithArray:[userDefaults objectForKey:@"BlacklistedApplications"]];
   _disabledApplications = [NSMutableSet setWithArray:[userDefaults objectForKey:@"DisabledApplications"]];
+  NSError *shortcutImportError = nil;
+  if (![SpectacleLegacyShortcutImporter importLegacyShortcutsIfNeeded:&shortcutImportError] && shortcutImportError) {
+    NSLog(@"Legacy shortcut import failed: %@", shortcutImportError);
+  }
   _shortcutStorage = [[SpectacleMigratingShortcutStorage alloc] initWithShortcutStorage:[SpectacleShortcutUserDefaultsStorage new]
                                                                    migrationDestination:[SpectacleShortcutJSONStorage new]];
   _shortcutManager = [[SpectacleShortcutManager alloc] initWithShortcutStorage:_shortcutStorage];

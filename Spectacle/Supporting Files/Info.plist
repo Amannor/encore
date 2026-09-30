@@ -5,21 +5,21 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en_US</string>
 	<key>CFBundleExecutable</key>
-	<string>Spectacle</string>
+	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Spectacle</string>
+	<string>Encore</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2</string>
+	<string>0.1.0</string>
 	<key>CFBundleSignature</key>
 	<string>ZERO</string>
 	<key>CFBundleVersion</key>
-	<string>0</string>
+	<string>1</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
@@ -29,7 +29,7 @@
 	<key>NSMainNibFile</key>
 	<string>Spectacle</string>
 	<key>NSAppleEventsUsageDescription</key>
-	<string>Spectacle uses AppleScript to open Security &amp; Privacy settings so you can grant Accessibility access.</string>
+	<string>Encore uses AppleScript to open Security &amp; Privacy settings so you can grant Accessibility access.</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>

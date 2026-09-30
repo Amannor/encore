@@ -73,7 +73,7 @@
   }
   self.loginItemEnabled.state = loginItemEnabledState;
   [self.statusItemEnabled selectItemWithTag:isStatusItemEnabled ? 0 : 1];
-  self.window.title = [@"Spectacle " stringByAppendingString:SpectacleUtilities.applicationVersion];
+  self.window.title = [@"Encore " stringByAppendingString:SpectacleUtilities.applicationVersion];
   self.footerView.wantsLayer = YES;
 }
 

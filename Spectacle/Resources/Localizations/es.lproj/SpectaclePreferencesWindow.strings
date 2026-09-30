@@ -23,8 +23,8 @@
 /* Class = "NSTextFieldCell"; title = "⇧"; ObjectID = "Ir0-AJ-ldj"; */
 "Ir0-AJ-ldj.title" = "⇧";
 
-/* Class = "NSWindow"; title = "Spectacle X.Y.Z"; ObjectID = "JW4-q9-L7q"; */
-"JW4-q9-L7q.title" = "Spectacle X.Y.Z";
+/* Class = "NSWindow"; title = "Encore X.Y.Z"; ObjectID = "JW4-q9-L7q"; */
+"JW4-q9-L7q.title" = "Encore X.Y.Z";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults..."; ObjectID = "NT7-Sd-Ofw"; */
 "NT7-Sd-Ofw.title" = "Restaurar por defecto...";
@@ -56,8 +56,8 @@
 /* Class = "NSMenuItem"; title = "as a background application"; ObjectID = "aWf-FC-J1j"; */
 "aWf-FC-J1j.title" = "aplicación en segundo plano";
 
-/* Class = "NSButtonCell"; title = "Launch Spectacle at login"; ObjectID = "cEj-mH-kie"; */
-"cEj-mH-kie.title" = "Ejecutar Spectacle al iniciar";
+/* Class = "NSButtonCell"; title = "Launch Encore at login"; ObjectID = "cEj-mH-kie"; */
+"cEj-mH-kie.title" = "Ejecutar Encore al iniciar";
 
 /* Class = "NSTextFieldCell"; title = "Lower Left:"; ObjectID = "dQP-TR-GMx"; */
 "dQP-TR-GMx.title" = "Abajo a la izquierda:";

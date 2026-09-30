@@ -2,11 +2,9 @@
 
 A new agent (or human) should be able to continue from a clone of this repository without the original planning chat.
 
-You still need one thing from a human that this repo cannot decide:
+You still need nothing from a human to keep building. The public name is **Encore** (`com.amannor.Encore`).
 
-1. **Final product name** — working title is **Encore** (ADR-001). Alternatives: Reprise, Revival, Afterpiece.
-
-`origin` is `git@github.com:Amannor/encore.git` (https://github.com/Amannor/encore). `upstream` is the archived original. The app builds with Xcode 27, `SpectacleSpecs` passes, and Slice 3 hardening is in. Next work is Slice 4.
+`origin` is `git@github.com:Amannor/encore.git` (https://github.com/Amannor/encore). `upstream` is the archived original. The app builds with Xcode 27 and `SpectacleSpecs` passes. Next work is Slice 7. Tag `v0.1.0` is the unsigned release; push it for GitHub Actions to publish the zip.
 
 ## What this project is
 
@@ -66,9 +64,9 @@ Import tip of archived `master` was `e75c341` (tag `1.2` is `eacf5bb`, an ancest
 | App build on current Xcode / universal binary | Slice 2 (done) |
 | `SpectacleSpecs` on XCTest, drop Carthage, CI | Slice 2b (done) |
 | Sparkle disabled, hardened runtime, `SMAppService` | Slice 3 (done) |
-| Golden geometry tests, compatibility notes | Slice 4 |
-| Final name, bundle ID, settings importer | Slice 5 |
-| GitHub Release zip + checksums | Slice 6 |
+| Golden geometry tests, compatibility notes | Slice 4 (done) |
+| Final name, bundle ID, settings importer | Slice 5 (done) |
+| GitHub Release zip + checksums | Slice 6 (done) |
 | Maintenance automation / outreach | Slice 7 |
 
-The app target builds on Xcode 27 as a universal binary (macOS 13+, Sparkle unlinked) and `SpectacleSpecs` runs on XCTest. Bundle ID is still `com.divisiblebyzero.Spectacle` until Slice 5.
+The app target builds on Xcode 27 as a universal binary (macOS 13+, Sparkle unlinked) and `SpectacleSpecs` runs on XCTest. Bundle ID is `com.amannor.Encore`. The built product is `Encore.app`.

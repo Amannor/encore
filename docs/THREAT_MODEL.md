@@ -1,11 +1,11 @@
 # Threat model
 
-Slice 3 record for the unsigned, hardened-runtime build. The app is still named Spectacle and still uses bundle ID `com.divisiblebyzero.Spectacle` until Slice 5.
+Slice 3 record for the unsigned, hardened-runtime build. The app is Encore, bundle ID `com.amannor.Encore`.
 
 ## What the app is allowed to do
 
 - Move other apps’ windows through the Accessibility API, after the user grants access.
-- Read and write shortcut JSON under `~/Library/Application Support/Spectacle/` and `NSUserDefaults`.
+- Read and write shortcut JSON under `~/Library/Application Support/Encore/` and `NSUserDefaults`. A one-shot import reads `Application Support/Spectacle/` and the `com.divisiblebyzero.Spectacle` defaults domain without writing to them.
 - Register or remove itself as a login item through `SMAppService.mainAppService`.
 - Run bundled JavaScript geometry with JavaScriptCore. JIT is allowed (`com.apple.security.cs.allow-jit`).
 - Run one bundled AppleScript that opens Security & Privacy settings. Sending Apple Events is allowed (`com.apple.security.automation.apple-events`) and `NSAppleEventsUsageDescription` is set.

@@ -1,10 +1,12 @@
-# Encore (working title)
+# Encore
 
 Unofficial continuation of [Spectacle](https://github.com/eczarny/spectacle), Eric Czarny’s macOS window manager.
 
+If you loved Spectacle, this is that app, maintained. It is not [Rectangle](https://github.com/rxhanson/Rectangle).
+
 This is **not** a release. There is no downloadable build yet. The app builds on current Xcode and `SpectacleSpecs` passes.
 
-If you loved Spectacle, the goal is that app, maintained: same Objective-C architecture, same JavaScript window calculations, same actions. It is **not** [Rectangle](https://github.com/rxhanson/Rectangle). Rectangle is a different, actively maintained window manager; this project does not copy its features.
+Same Objective-C architecture, same JavaScript window calculations, same actions. Rectangle is a different window manager; this project does not copy its features. Differences are listed in [docs/COMPATIBILITY.md](docs/COMPATIBILITY.md).
 
 Spectacle itself is [no longer maintained](https://github.com/eczarny/spectacle#important-note). This repository keeps that history and continues the MIT-licensed source. It is not affiliated with Eric Czarny.
 
@@ -12,21 +14,34 @@ Spectacle itself is [no longer maintained](https://github.com/eczarny/spectacle#
 
 | | |
 | --- | --- |
-| Public name | TBD (working title **Encore**) |
+| Public name | **Encore** |
 | Last original release | Spectacle **1.2** |
-| Intended min macOS | **13+** (set in the Xcode project) |
-| Bundle ID | TBD (will not ship as `com.divisiblebyzero.Spectacle`) |
-| Auto-update | Disabled for unsigned builds; will not use spectacleapp.com’s Sparkle feed |
+| Minimum macOS | **13+** |
+| Bundle ID | `com.amannor.Encore` |
+| Auto-update | None. Sparkle is not linked. Not spectacleapp.com’s appcast. |
 | Repository | [github.com/Amannor/encore](https://github.com/Amannor/encore) |
-| Current work | Hardening is in (Slice 3). Next is the behavior lock (Slice 4). See [docs/STATUS.md](docs/STATUS.md) |
+| Current work | See [docs/STATUS.md](docs/STATUS.md) |
 
 Maintainers and agents: start at [docs/HANDOFF.md](docs/HANDOFF.md).
+
+## Migrating shortcuts
+
+Quit original Spectacle first. Encore does not write into Spectacle’s settings, and both apps will fight over the same hotkeys if they run together.
+
+On first launch, if Encore has no shortcuts yet, it copies them in this order:
+
+1. `~/Library/Application Support/Spectacle/Shortcuts.json`
+2. Otherwise the shortcut entries in the `com.divisiblebyzero.Spectacle` defaults domain
+
+Encore then stores its own copy at `~/Library/Application Support/Encore/Shortcuts.json`. The original files are left in place. A fresh install with neither source uses the built-in defaults below.
 
 ## What this is (and is not)
 
 - A minimal, secure, reproducibly built macOS window manager that preserves original Spectacle behavior.
 - MIT-licensed. Original code remains copyright Eric Czarny; see [LICENSE.md](LICENSE.md).
 - Not a Swift rewrite. Not a Rectangle clone. Not “Spectacle, modernized by AI.”
+
+Security reports and unsigned-build notes: [SECURITY.md](SECURITY.md).
 
 ## Keyboard shortcuts
 

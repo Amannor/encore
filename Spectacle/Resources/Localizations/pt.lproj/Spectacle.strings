@@ -11,23 +11,23 @@
 /* Class = "NSMenuItem"; title = "Upper Right"; ObjectID = "C7t-Sf-kOI"; */
 "C7t-Sf-kOI.title" = "Direita Superior";
 
-/* Class = "NSMenuItem"; title = "About Spectacle"; ObjectID = "EA9-dx-Qfg"; */
-"EA9-dx-Qfg.title" = "Sobre o Spectacle";
+/* Class = "NSMenuItem"; title = "About Encore"; ObjectID = "EA9-dx-Qfg"; */
+"EA9-dx-Qfg.title" = "Sobre o Encore";
 
-/* Class = "NSTextFieldCell"; title = "Spectacle would like to control your windows using accessibility features."; ObjectID = "HRo-tn-M1V"; */
-"HRo-tn-M1V.title" = "O Spectacle deseja controlar as janelas usando recursos de acessibilidade.";
+/* Class = "NSTextFieldCell"; title = "Encore would like to control your windows using accessibility features."; ObjectID = "HRo-tn-M1V"; */
+"HRo-tn-M1V.title" = "O Encore deseja controlar as janelas usando recursos de acessibilidade.";
 
 /* Class = "NSMenuItem"; title = "Next Display"; ObjectID = "I4U-jL-hXq"; */
 "I4U-jL-hXq.title" = "Monitor Seguinte";
 
-/* Class = "NSMenuItem"; title = "Quit Spectacle"; ObjectID = "Isn-Og-AEv"; */
-"Isn-Og-AEv.title" = "Encerrar Spectacle";
+/* Class = "NSMenuItem"; title = "Quit Encore"; ObjectID = "Isn-Og-AEv"; */
+"Isn-Og-AEv.title" = "Encerrar Encore";
 
 /* Class = "NSMenuItem"; title = "Left Half"; ObjectID = "Jae-vx-7ZC"; */
 "Jae-vx-7ZC.title" = "Metade Esquerda";
 
-/* Class = "NSMenu"; title = "Spectacle Status Item"; ObjectID = "KsA-8w-wcl"; */
-"KsA-8w-wcl.title" = "Spectacle Status Item";
+/* Class = "NSMenu"; title = "Encore Status Item"; ObjectID = "KsA-8w-wcl"; */
+"KsA-8w-wcl.title" = "Encore Status Item";
 
 /* Class = "NSMenuItem"; title = "Preferences..."; ObjectID = "ME4-Br-HLT"; */
 "ME4-Br-HLT.title" = "Preferências...";
@@ -56,8 +56,8 @@
 /* Class = "NSMenu"; title = "Disable"; ObjectID = "flL-B2-XIP"; */
 "flL-B2-XIP.title" = "Desativar";
 
-/* Class = "NSButtonCell"; title = "Quit Spectacle"; ObjectID = "gMV-vD-CUe"; */
-"gMV-vD-CUe.title" = "Encerrar Spectacle";
+/* Class = "NSButtonCell"; title = "Quit Encore"; ObjectID = "gMV-vD-CUe"; */
+"gMV-vD-CUe.title" = "Encerrar Encore";
 
 /* Class = "NSMenuItem"; title = "Make Smaller"; ObjectID = "gTe-ym-DB0"; */
 "gTe-ym-DB0.title" = "Diminuir";

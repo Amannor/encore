@@ -38,7 +38,7 @@ flowchart TD
 | App delegate | `Spectacle/Sources/SpectacleAppDelegate.m` | Launch: defaults, shortcuts, calculator, Sparkle, AX trust prompt |
 | Menu / status item | `Spectacle/Resources/Localizations/Base.lproj/Spectacle.xib` | Menu-bar extra |
 | Preferences | `SpectaclePreferencesController.m` + `SpectaclePreferencesWindow.xib` | Shortcut recorder UI, login item, updates checkbox |
-| Bundle ID (still original) | `Spectacle.xcodeproj/project.pbxproj` | `com.divisiblebyzero.Spectacle` |
+| Bundle ID | `Spectacle.xcodeproj/project.pbxproj` | `com.amannor.Encore` |
 | Version | `Spectacle/Supporting Files/Info.plist` | `CFBundleShortVersionString` 1.2, min OS 10.9 |
 
 `applicationDidFinishLaunching:` in `SpectacleAppDelegate.m` wires storage → shortcut manager → window position manager, then calls `SUUpdater` and `AXIsProcessTrustedWithOptions`.
@@ -100,7 +100,7 @@ History is per frontmost application bundle ID (`SpectacleHistory` / `SpectacleH
 
 - **Registration:** Carbon `RegisterEventHotKey` in `SpectacleShortcutManager.m` (signature `'ZERO'`). Not MASShortcut.
 - **Recorder:** custom `SpectacleShortcutRecorder` (Carbon), not a third-party control.
-- **Storage:** `SpectacleMigratingShortcutStorage` reads UserDefaults (`SpectacleShortcutUserDefaultsStorage`) until `~/Library/Application Support/Spectacle/Shortcuts.json` exists, then JSON (`SpectacleShortcutJSONStorage`).
+- **Storage:** `SpectacleMigratingShortcutStorage` reads UserDefaults until `~/Library/Application Support/Encore/Shortcuts.json` exists, then JSON (`SpectacleShortcutJSONStorage`). `SpectacleLegacyShortcutImporter` copies original Spectacle shortcuts into that file once, without writing back.
 - **Defaults:** `SpectacleDefaultShortcutHelpers.m`.
 - **Parsing / display:** `SpectacleShortcutKeyBindings.m`, `SpectacleShortcutTranslations.m`.
 

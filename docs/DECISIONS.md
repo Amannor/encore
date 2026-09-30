@@ -18,23 +18,19 @@ Release entitlements are `allow-jit` and `apple-events` only. Debug adds `com.ap
 
 Renames that keep the same values are allowed (modifier masks, control states, alert styles, status-item button). Calls whose replacement would change behavior stay on the old API with a local `-Wdeprecated-declarations` ignore until the slice that replaces them: `LSSharedFileList` (Slice 3, `SMAppService`), `NSKeyedArchiver` secure coding, and `NSColor.windowFrameColor`.
 
-## ADR-001 — Product name (provisional)
+## ADR-001 — Product name
 
-**Status:** accepted (provisional; finalize in Slice 5)  
-**Date:** 2026-09-10
+**Status:** accepted  
+**Date:** 2026-09-10, finalized 2026-09-30
 
-The public name will not be “Spectacle.” Working title until a human picks: **Encore**. Alternatives: Reprise, Revival, Afterpiece.
-
-Slice 5 finalizes name, icon, and menu-bar copy. Until then, docs and the README may say “Encore (working title).”
+The public name is **Encore**. It is not “Spectacle.” The menu bar, bundle name, and `Encore.app` use that name. The original app icon is unchanged.
 
 ## ADR-002 — Bundle identifier
 
-**Status:** accepted (value TBD in Slice 5)  
-**Date:** 2026-09-10
+**Status:** accepted  
+**Date:** 2026-09-10, finalized 2026-09-30
 
-Do not ship as `com.divisiblebyzero.Spectacle`. A fresh install must not collide with original Spectacle’s Sparkle feed, defaults, or bundle ID. The new identifier is chosen in Slice 5 together with the settings importer.
-
-The Xcode project still uses the original ID until Slice 5. Do not change it early “to get it out of the way.”
+The bundle ID is `com.amannor.Encore`. Do not ship as `com.divisiblebyzero.Spectacle`. Shortcuts live in `~/Library/Application Support/Encore/`. A one-shot importer reads the old JSON file or the old defaults domain and does not write back to them. Quit original Spectacle before launching Encore.
 
 ## ADR-003 — Minimum macOS version
 

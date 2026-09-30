@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D1E1AAF147E06AD0021D73D"
-               BuildableName = "Spectacle.app"
+               BuildableName = "Encore.app"
                BlueprintName = "Spectacle"
                ReferencedContainer = "container:Spectacle.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D1E1AAF147E06AD0021D73D"
-            BuildableName = "Spectacle.app"
+            BuildableName = "Encore.app"
             BlueprintName = "Spectacle"
             ReferencedContainer = "container:Spectacle.xcodeproj">
          </BuildableReference>
@@ -78,7 +78,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D1E1AAF147E06AD0021D73D"
-            BuildableName = "Spectacle.app"
+            BuildableName = "Encore.app"
             BlueprintName = "Spectacle"
             ReferencedContainer = "container:Spectacle.xcodeproj">
          </BuildableReference>
@@ -95,7 +95,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D1E1AAF147E06AD0021D73D"
-            BuildableName = "Spectacle.app"
+            BuildableName = "Encore.app"
             BlueprintName = "Spectacle"
             ReferencedContainer = "container:Spectacle.xcodeproj">
          </BuildableReference>

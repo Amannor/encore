@@ -1,0 +1,24 @@
+name: release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Archive, zip, checksum, SBOM
+        run: scripts/release.sh "${GITHUB_REF_NAME#v}"
+      - name: Publish
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/Encore-*.zip
+            dist/Encore-*.sha256
+            dist/Encore-*.sbom.txt

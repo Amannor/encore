@@ -48,8 +48,8 @@ There is no first-party analytics or crash reporter in source.
 
 | Path / API | Where | Detail |
 | --- | --- | --- |
-| `~/Library/Application Support/Spectacle/Shortcuts.json` | `SpectacleShortcutJSONStorage.m` `findOrCreateSpectacleDirectory` | Create dir + atomic write of shortcut name/key-binding JSON. No other files written here. |
-| `NSUserDefaults` (suite = bundle ID `com.divisiblebyzero.Spectacle`) | `SpectacleShortcutUserDefaultsStorage.m`, `SpectacleAppDelegate.m`, `SpectaclePreferencesController.m`, `SpectacleUtilities.m` | Legacy shortcut storage; `DisabledApplications`; `StatusItemEnabled`; `AutomaticUpdateCheckEnabled`; `BackgroundAlertSuppressed`; `BlacklistedApplications`. |
+| `~/Library/Application Support/Encore/Shortcuts.json` | `SpectacleShortcutJSONStorage.m` | Create dir + atomic write of shortcut name/key-binding JSON. Importer may copy from `Application Support/Spectacle/Shortcuts.json` once. |
+| `NSUserDefaults` (suite = bundle ID `com.amannor.Encore`) | `SpectacleShortcutUserDefaultsStorage.m`, `SpectacleAppDelegate.m`, `SpectaclePreferencesController.m`, `SpectacleUtilities.m` | Legacy shortcut storage; `DisabledApplications`; `StatusItemEnabled`; `AutomaticUpdateCheckEnabled`; `BackgroundAlertSuppressed`; `BlacklistedApplications`. |
 | Registered defaults | `Spectacle/Resources/Property Lists/Defaults.plist` loaded by `+[SpectacleUtilities registerDefaultsForBundle:]` | Blacklist includes Photoshop, Steam, and Spectacle itself. |
 | Bundled JS (read-only) | `Spectacle/Resources/Window Position Calculations/*.js` | Loaded from the app bundle only (`NSBundle` `pathsForResourcesOfType:inDirectory:`). |
 | Bundled AppleScript (read-only) | `Spectacle/Resources/Scripts/Security & Privacy System Preferences.scpt` (and `… Original.scpt`) | See Launch / AppleScript. |

@@ -64,7 +64,7 @@ static NSURL *findOrCreateSpectacleDirectory(NSError **error)
   if (!applicationSupportDirectory) {
     return nil;
   }
-  NSURL *spectacleDirectory = [applicationSupportDirectory URLByAppendingPathComponent:@"Spectacle"];
+  NSURL *spectacleDirectory = [applicationSupportDirectory URLByAppendingPathComponent:@"Encore"];
   BOOL success = [[NSFileManager defaultManager] createDirectoryAtURL:spectacleDirectory
                                           withIntermediateDirectories:YES
                                                            attributes:nil

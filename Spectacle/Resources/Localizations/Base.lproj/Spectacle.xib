@@ -39,9 +39,9 @@
                 <outlet property="undoLastMoveShortcutMenuItem" destination="l9O-0B-fjp" id="gns-Zw-ZVc"/>
             </connections>
         </customObject>
-        <menu title="Spectacle Status Item" id="KsA-8w-wcl" propertyAccessControl="localizable">
+        <menu title="Encore Status Item" id="KsA-8w-wcl" propertyAccessControl="localizable">
             <items>
-                <menuItem title="About Spectacle" tag="-1" id="EA9-dx-Qfg">
+                <menuItem title="About Encore" tag="-1" id="EA9-dx-Qfg">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="orderFrontStandardAboutPanel:" target="-2" id="P8D-am-ldh"/>
@@ -190,7 +190,7 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="OfT-IK-7NI"/>
-                <menuItem title="Quit Spectacle" id="Isn-Og-AEv">
+                <menuItem title="Quit Encore" id="Isn-Og-AEv">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="terminate:" target="-2" id="V4u-Ow-d6l"/>
@@ -213,7 +213,7 @@
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="q8H-wi-KU2">
                         <rect key="frame" x="129" y="321" width="522" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Spectacle would like to control your windows using accessibility features." id="HRo-tn-M1V">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Encore would like to control your windows using accessibility features." id="HRo-tn-M1V">
                             <font key="font" metaFont="systemBold"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -242,7 +242,7 @@
                     <button verticalHuggingPriority="750" id="nIS-kz-1R7">
                         <rect key="frame" x="425" y="251" width="147" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Quit Spectacle" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gMV-vD-CUe">
+                        <buttonCell key="cell" type="push" title="Quit Encore" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gMV-vD-CUe">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
