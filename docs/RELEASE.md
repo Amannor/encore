@@ -9,9 +9,7 @@ Homebrew cask is out of scope until the app is notarized.
 1. Download `Encore-0.1.0.zip` and `Encore-0.1.0.sha256` from the GitHub Release for tag `v0.1.0`. That tag is the source tree the workflow archived.
 2. Verify the zip:
 
-```sh
-shasum -a 256 -c Encore-0.1.0.sha256
-```
+`shasum -a 256 -c Encore-0.1.0.sha256`
 
 3. Unzip. Gatekeeper blocks a normal double-click. Control-click `Encore.app`, choose Open, then confirm.
 4. Quit original Spectacle before the first launch. Both apps use the same shortcuts.
@@ -25,4 +23,4 @@ shasum -a 256 -c Encore-0.1.0.sha256
 scripts/release.sh 0.1.0
 ```
 
-Outputs under `dist/` are not committed. The checksum belongs to that zip. A later archive of the same tag can differ by signature and zip timestamps; use the checksum published next to the zip.
+Outputs under `dist/` are not committed. A local archive of `4755d62` hashed to `b5e0325d5efa3ff174117a9c9703c4a97ad9588a8018806940335355fbd8bb78`. The workflow on `macos-15` rebuilds the tag and attaches the checksum that matches that zip.

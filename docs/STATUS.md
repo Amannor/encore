@@ -193,11 +193,11 @@ Host: macOS 27.0.1 (26A434), arm64. Intel: not run. One display, 1512×982, notc
 
 ```sh
 scripts/release.sh 0.1.0
-# ARCHIVE SUCCEEDED
-# dist/Encore-0.1.0.zip
+# ARCHIVE SUCCEEDED at tag v0.1.0 (4755d62)
+# b5e0325d5efa3ff174117a9c9703c4a97ad9588a8018806940335355fbd8bb78  dist/Encore-0.1.0.zip
 ```
 
-Checksum of the zip built from tag `v0.1.0` is recorded after that tag.
+The GitHub workflow rebuilds that tag on `macos-15` and attaches its own `.sha256`. That file, not this local hash, is the check for the downloaded zip.
 
 ### What the next agent must not redo
 
