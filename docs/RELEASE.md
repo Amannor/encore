@@ -13,7 +13,7 @@ Homebrew cask is out of scope until the app is notarized.
 
 3. Unzip. Gatekeeper blocks a normal double-click. Control-click `Encore.app`, choose Open, then confirm.
 4. Quit original Spectacle before the first launch. Both apps use the same shortcuts.
-5. Grant Accessibility when asked. System Settings → Privacy & Security → Accessibility.
+5. Grant control of the computer when asked. On macOS 27 that list is System Settings → Privacy & Security → Device Control and Data Access. On macOS 26 and earlier it is named Accessibility.
 
 `Encore-0.1.0.sbom.txt` lists linked libraries. Sparkle and Swift Package Manager versions are none.
 

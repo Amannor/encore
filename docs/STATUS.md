@@ -2,7 +2,7 @@
 
 **Last completed slice:** 6 — First public (unsigned) release and E2E  
 **Current / next slice:** 7 — Maintenance workflow  
-**Updated:** 2026-09-30  
+**Updated:** 2026-10-10  
 **Branch:** `cursor/build-and-xctest`. Tag `v0.1.0` is the release source. Do not return to `main` for this work.
 
 ## Next session (Slice 7 only)
@@ -11,7 +11,17 @@ Read [SLICES.md](SLICES.md) Slice 7. Do not redo Slices 2–6.
 
 - Do not enable Sparkle or notarize in Slice 7. Homebrew cask stays out of scope.
 - Do not change legacy expected frames, the JS window math, or the modern-display goldens. The live built-in screen is not that fixture.
-- Shortcut display tests need the ABC input source.
+- Shortcut display tests need the ABC input source. Hebrew maps `kVK_ANSI_C` to ב. Switch the layout. Do not rewrite the expected shortcut strings.
+
+### Slice 6 GUI checklist (complete 2026-10-10)
+
+Do not start Slice 7 unless asked. Do not re-run this checklist unless the app binary changes. Intel unit tests already passed. Do not install FreeDisplay.
+
+The run used one copy, at `/Applications/Encore.app` (same archive binary). Opening that and `build/Encore.xcarchive/Products/Applications/Encore.app` together shows two menu-bar icons. Launch one copy. On macOS 27 the privacy pane is System Settings → Privacy & Security → Device Control and Data Access. A Debug or xcarchive row is a different binary. A stale TCC cdhash denies the running one; `tccutil reset Accessibility com.amannor.Encore`, then add the running app again.
+
+Second screen, if needed again: on the other Mac, System Settings → General → AirDrop & Handoff → AirPlay Receiver → Everyone. On this Mac, menu bar Screen Mirroring (not the Menu Bar settings page) → that Mac → Extended Display. Same Wi-Fi, VPN off. If AirPlay Receiver is missing, [BetterDisplay](https://github.com/waydabber/BetterDisplay). Do not install FreeDisplay.
+
+Tag `v0.1.0` is local only. Pushing it publishes the GitHub release. Do not push it unless asked. `.github/workflows/test-intel.yml` runs on every push to `cursor/build-and-xctest`. Commit `4755d62`’s message says the original bundle ID was left in place. The app bundle ID is `com.amannor.Encore`. Do not amend that commit.
 
 ## Blockers / open questions for humans
 
@@ -168,22 +178,24 @@ Preferences window title uses `Encore` plus `CFBundleShortVersionString` (`0.1.0
 
 ### Manual test (2026-09-30)
 
-Host: macOS 27.0.1 (26A434), arm64. Intel: not run. One display, 1512×982, notch (`safeAreaInsets.top` 32). Live `visibleFrame` `(0, 81, 1512, 868)`. That is not the Slice 4 fixture.
+Host: macOS 27.0.1 (26A434), arm64. One display, 1512×982, notch (`safeAreaInsets.top` 32). Live `visibleFrame` `(0, 81, 1512, 868)`. That is not the Slice 4 fixture.
+
+Intel unit tests: pass on GitHub `macos-15-intel` (x86_64, macOS 15.7.9 24G830, Xcode 16.4 16F6). Run 36761960201, `** TEST SUCCEEDED **`. That is the automated suite only. The GUI checklist below was not run on Intel.
 
 | Item | Result |
 | --- | --- |
 | First launch accessibility modal | pass. `tell application "Encore" to quit` returned user canceled (-128) while the modal was up. Process then killed. |
-| Grant Accessibility, shortcut moves a window | not run |
-| Revoke Accessibility | not run |
-| Each default shortcut once | not run |
-| Left half cycles 1/2 → 2/3 → 1/3 | not run |
-| Undo / redo | not run |
-| Next / previous display | not run (one screen) |
-| Window wider than destination fills `visibleFrame` | not run |
-| Spaces | not run |
-| Full-screen app | not run |
-| Chrome / Electron / Stage Manager | not run |
-| Notch fullscreen and top half | not run |
+| Grant Accessibility, shortcut moves a window | pass. `/Applications/Encore.app` only. TextEdit left half `(0, 33)` size `756×869`. |
+| Revoke Accessibility | pass. With the switch off, relaunch showed the accessibility modal and shortcuts did not move the window. Granting `/Applications/Encore.app` again made option-command-left work. |
+| Each default shortcut once | pass. Next/previous display is the row below. |
+| Left half cycles 1/2 → 2/3 → 1/3 | pass. |
+| Undo / redo | pass. |
+| Next / previous display | pass. Control-option-command-right centered the window on the AirPlay display. Control-option-command-left brought it back. |
+| Window wider than destination fills `visibleFrame` | pass. A window wider than this Mac filled the work area below the menu bar and above the Dock. |
+| Spaces | pass. Rect unchanged after switching away and back. Option-command-left on an empty desktop did nothing. |
+| Full-screen app | pass. Green-button full screen ignored the shortcut. Left half worked after leaving it. |
+| Chrome / Electron / Stage Manager | pass. Brave (Chromium) left half moved the front window. Cursor (Electron) left half moved; `AXEnhancedUserInterface` was not changed. Stage Manager moved the front window only. |
+| Notch fullscreen and top half | pass. Option-command-F filled the work area below the menu bar and above the Dock. Top half started under the menu bar. |
 
 ### No Sparkle network
 
@@ -203,4 +215,6 @@ The GitHub workflow rebuilds that tag on `macos-15` and attaches its own `.sha25
 
 - Do not enable Sparkle or add a Homebrew cask.
 - Do not retune geometry to this machine’s live `visibleFrame`.
-- Do not mark the manual items above as passed without running them.
+- Do not re-run the GUI checklist above. It passed on 2026-10-10. Do not mark a future run passed without running it.
+- Do not rerun the Intel unit job unless the suite or the workflow changes. Run 36761960201 already passed on `macos-15-intel`.
+- Do not install FreeDisplay. Use the other MacBook over AirPlay, then BetterDisplay.

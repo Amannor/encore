@@ -4,7 +4,7 @@ A new agent (or human) should be able to continue from a clone of this repositor
 
 You still need nothing from a human to keep building. The public name is **Encore** (`com.amannor.Encore`).
 
-`origin` is `git@github.com:Amannor/encore.git` (https://github.com/Amannor/encore). `upstream` is the archived original. The app builds with Xcode 27 and `SpectacleSpecs` passes. Next work is Slice 7. Tag `v0.1.0` is the unsigned release; push it for GitHub Actions to publish the zip.
+`origin` is `git@github.com:Amannor/encore.git` (https://github.com/Amannor/encore). `upstream` is the archived original. The app builds with Xcode 27 and `SpectacleSpecs` passes. The Slice 6 GUI checklist passed on 2026-10-10. Next work is Slice 7, when asked. Tag `v0.1.0` is the unsigned release. Do not push that tag unless asked. Pushing it publishes the zip.
 
 ## What this project is
 

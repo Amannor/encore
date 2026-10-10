@@ -4,7 +4,7 @@ About 20 minutes. Geometry is already locked by XCTest. This checks Accessibilit
 
 Build the Release app with `scripts/release.sh 0.1.0` and open `dist` after unzipping `Encore-0.1.0.zip`, or open `build/Encore.xcarchive/Products/Applications/Encore.app`. Quit original Spectacle first if it is running.
 
-Mark each box pass or fail. Note the macOS version and whether the machine is Apple silicon or Intel.
+Mark each box pass or fail. Note the macOS version and whether the machine is Apple silicon or Intel. The 2026-10-10 run is recorded in [STATUS.md](STATUS.md). On macOS 27 the privacy list is Device Control and Data Access.
 
 ## Accessibility
 
