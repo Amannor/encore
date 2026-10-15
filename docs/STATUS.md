@@ -1,21 +1,50 @@
 # Status
 
-**Last completed slice:** 6 — First public (unsigned) release and E2E  
-**Current / next slice:** 7 — Maintenance workflow  
-**Updated:** 2026-10-10  
-**Branch:** `cursor/build-and-xctest`. Tag `v0.1.0` is the release source. Do not return to `main` for this work.
+**Last completed slice:** 7 — Maintenance workflow  
+**Current / next slice:** none until a human names one. The distribution consult was skipped.  
+**Updated:** 2026-10-15  
+**Branch:** `cursor/build-and-xctest`. Tag `v0.1.0` is the release source. Do not return to `main` for this work. Do not push that tag. In-app updates and forum posts wait on the Apple Developer Program (ADR-013).
 
-## Next session (Slice 7 only)
+## Next session
 
-Read [SLICES.md](SLICES.md) Slice 7. Do not redo Slices 2–6.
+Do not redo Slice 7. Do not start the distribution consult unless asked. Do not enable Sparkle, notarize, or add a Homebrew cask. Do not change legacy expected frames, the JS window math, or the modern-display goldens. The live built-in screen is not that fixture.
 
-- Do not enable Sparkle or notarize in Slice 7. Homebrew cask stays out of scope.
-- Do not change legacy expected frames, the JS window math, or the modern-display goldens. The live built-in screen is not that fixture.
-- Shortcut display tests need the ABC input source. Hebrew maps `kVK_ANSI_C` to ב. Switch the layout. Do not rewrite the expected shortcut strings.
+Shortcut display tests need the ABC input source. Hebrew maps `kVK_ANSI_C` to ב. Switch the layout. Do not rewrite the expected shortcut strings.
+
+The weekly `obsolete` workflow and Dependabot read their config from the default branch (`main`). Pushing this branch does not start them. Do not merge to `main` unless asked. Do not push tag `v0.1.0`. Do not enable Sparkle, notarize, or post to forums until the maintainer has a Developer ID (ADR-013).
+
+### Icon change (done 2026-10-14)
+
+The menu-bar image is a black spotlight, `Encore Status Item`, 20×20 and 40×40, loaded from `SpectacleAppDelegate.m` with `setTemplate:YES`. New files are `Spectacle/Resources/Images.xcassets/Encore Status Item.imageset/`. Eric Czarny’s glasses remain in `Spectacle Status Item.imageset` and are not loaded. The Finder icon was not swapped. ADR-012. Window math was not touched.
+
+`/Applications/Encore.app` is still the old binary, so the menu bar keeps the glasses until that copy is quit and this build is the only one launched. The new build changes the signature hash. Accessibility then fails until the human removes Encore from Device Control and Data Access and adds the new build again. Do not launch a second copy beside the installed app.
+
+```sh
+xcodebuild -scheme Spectacle -destination 'platform=macOS' -configuration Debug test -derivedDataPath DerivedData ONLY_ACTIVE_ARCH=YES
+# ** TEST SUCCEEDED ** (105 tests, 0 failures)
+# DerivedData/Build/Products/Debug/Encore.app Assets.car contains "Encore Status Item"
+```
+
+The debug spotlight was confirmed on screen on 2026-10-15, with Accessibility granted for `DerivedData/Build/Products/Debug/Encore.app`. The archive copy at `build/Encore.xcarchive` was quit so only one menu-bar icon remained.
+
+Do not redraw the spotlight. Do not delete the glasses files. Do not re-run the Slice 6 GUI checklist for this art change.
+
+### Commands (2026-10-15)
+
+```sh
+xcodebuild -scheme Spectacle -destination 'platform=macOS' -configuration Debug test -derivedDataPath DerivedData ONLY_ACTIVE_ARCH=YES
+# ** TEST SUCCEEDED ** (105 tests, 0 failures)
+
+xcodebuild -scheme Spectacle -destination 'platform=macOS' -configuration Debug analyze -derivedDataPath DerivedData ONLY_ACTIVE_ARCH=YES
+# ** ANALYZE SUCCEEDED **
+# same localizability warning in SpectacleAppDelegate.m:101, not fixed
+```
+
+Sparkle was not added. No release tag was pushed. Forum posts were not made.
 
 ### Slice 6 GUI checklist (complete 2026-10-10)
 
-Do not start Slice 7 unless asked. Do not re-run this checklist unless the app binary changes. Intel unit tests already passed. Do not install FreeDisplay.
+Slice 7 is done. Do not re-run this checklist unless the app binary changes. Intel unit tests already passed. Do not install FreeDisplay.
 
 The run used one copy, at `/Applications/Encore.app` (same archive binary). Opening that and `build/Encore.xcarchive/Products/Applications/Encore.app` together shows two menu-bar icons. Launch one copy. On macOS 27 the privacy pane is System Settings → Privacy & Security → Device Control and Data Access. A Debug or xcarchive row is a different binary. A stale TCC cdhash denies the running one; `tccutil reset Accessibility com.amannor.Encore`, then add the running app again.
 
@@ -218,3 +247,37 @@ The GitHub workflow rebuilds that tag on `macos-15` and attaches its own `.sha25
 - Do not re-run the GUI checklist above. It passed on 2026-10-10. Do not mark a future run passed without running it.
 - Do not rerun the Intel unit job unless the suite or the workflow changes. Run 36761960201 already passed on `macos-15-intel`.
 - Do not install FreeDisplay. Use the other MacBook over AirPlay, then BetterDisplay.
+
+## Slice 7 outcome
+
+Maintenance is a weekly issue plus Dependabot for GitHub Actions tags. Playbook: [MAINTENANCE.md](MAINTENANCE.md). ADR-011.
+
+- `.github/workflows/obsolete.yml` — Mondays 15:00 UTC, and `workflow_dispatch`. Records SDK, Sparkle scan, `-Wdeprecated-declarations` ignores, `xcodebuild analyze`, and `runs-on` images. Opens an `obsolete` issue, or comments if one is already open. Analyze failure is still filed, then the job exits with that status.
+- `.github/ISSUE_TEMPLATE/obsolete.yml` — same headings for a person.
+- `.github/dependabot.yml` — weekly `github-actions` updates.
+
+Sparkle scan of `Spectacle/`, `SpectacleSpecs/`, and `Spectacle.xcodeproj/` is empty. Deployment target is still `13.0`. Distribution consult was not written. Sparkle was not enabled. No notarization. No Homebrew cask.
+
+The schedule does not run from this branch. GitHub runs scheduled workflows and Dependabot from `main`.
+
+### Commands (2026-10-14, Slice 7)
+
+```sh
+git grep -n -E 'Sparkle|SUFeedURL|dsa_public\.pem|spectacleapp\.com' -- Spectacle SpectacleSpecs Spectacle.xcodeproj
+# exit 1, no hits
+
+git grep -n 'Wdeprecated-declarations' -- '*.m' '*.h'
+# five ignores, unchanged
+
+grep MACOSX_DEPLOYMENT_TARGET Spectacle.xcodeproj/project.pbxproj | sort -u
+# MACOSX_DEPLOYMENT_TARGET = 13.0
+```
+
+`xcodebuild` was not re-run. The app binary did not change. Do not re-run the Slice 6 GUI checklist.
+
+### What the next agent must not redo
+
+- Do not rebuild the weekly workflow, the issue template, or Dependabot.
+- Do not write the distribution consult unless asked.
+- Do not enable Sparkle, notarize, or add a Homebrew cask.
+- Do not merge to `main` or push `v0.1.0` unless asked.

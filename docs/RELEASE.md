@@ -2,6 +2,8 @@
 
 Encore `v0.1.0` is an ad-hoc signed, unnotarized build. There is no auto-update. Sparkle is not in the app, and this project does not use `https://spectacleapp.com/updates/appcast.xml`.
 
+A newer zip on GitHub is the only update until the app is Developer ID signed and notarized (ADR-013). After that, updates are Sparkle 2 on an appcast this project hosts.
+
 Homebrew cask is out of scope until the app is notarized.
 
 ## Install

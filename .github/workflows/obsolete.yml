@@ -1,0 +1,88 @@
+name: obsolete
+
+on:
+  schedule:
+    - cron: "0 15 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  report:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Collect obsolescence notes
+        run: |
+          set -euo pipefail
+          {
+            echo "## SDK"
+            echo
+            echo '```'
+            xcodebuild -version
+            echo "macOS SDK: $(xcrun --sdk macosx --show-sdk-version)"
+            sw_vers
+            echo '```'
+            echo
+            echo "Deployment target in \`Spectacle.xcodeproj\` (ADR-003 minimum is macOS 13):"
+            echo
+            echo '```'
+            grep MACOSX_DEPLOYMENT_TARGET Spectacle.xcodeproj/project.pbxproj | sort -u
+            echo '```'
+            echo
+            echo "## Sparkle"
+            echo
+            echo "ADR-004: Sparkle stays unlinked. No \`SUFeedURL\`. Do not use spectacleapp.com’s appcast."
+            echo
+            echo '```'
+            git grep -n -E 'Sparkle|SUFeedURL|dsa_public\.pem|spectacleapp\.com' -- Spectacle SpectacleSpecs Spectacle.xcodeproj || echo "none"
+            echo '```'
+            echo
+            echo "## Deprecated APIs"
+            echo
+            echo "ADR-009: a call whose replacement would change behavior stays on the old API. Do not delete a pragma to silence a warning."
+            echo
+            echo '```'
+            git grep -n 'Wdeprecated-declarations' -- '*.m' '*.h' || echo "none"
+            echo '```'
+            echo
+            echo "### Analyze"
+            echo
+            set +e
+            xcodebuild -scheme Spectacle -destination 'platform=macOS' -configuration Debug analyze ONLY_ACTIVE_ARCH=YES > "$RUNNER_TEMP/analyze.log" 2>&1
+            analyze_status=$?
+            set -e
+            echo "xcodebuild analyze exit: ${analyze_status}"
+            echo
+            echo '```'
+            grep -E 'warning:|error:' "$RUNNER_TEMP/analyze.log" | head -n 80 || echo "none"
+            echo '```'
+            echo "${analyze_status}" > "$RUNNER_TEMP/analyze-status"
+            echo
+            echo "## GitHub Actions image"
+            echo
+            echo '```'
+            git grep -n 'runs-on:' -- .github/workflows
+            echo '```'
+            echo
+            echo "Dependabot bumps action tags. Runner-image retirement is a human check against the [runner-images README](https://github.com/actions/runner-images). Do not switch images inside this job."
+            echo
+            echo "Playbook: docs/MAINTENANCE.md"
+          } > "$RUNNER_TEMP/obsolete.md"
+      - name: File the issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh label create obsolete --description "SDK, Sparkle, deprecated APIs, Actions image" --color "5319e7" --force
+          existing="$(gh issue list --label obsolete --state open --limit 1 --json number --jq '.[0].number // empty')"
+          title="Obsolete check $(date -u +%Y-%m-%d)"
+          if [ -n "${existing}" ]; then
+            gh issue comment "${existing}" --body-file "$RUNNER_TEMP/obsolete.md"
+          else
+            gh issue create --title "${title}" --label obsolete --body-file "$RUNNER_TEMP/obsolete.md"
+          fi
+          status="$(cat "$RUNNER_TEMP/analyze-status")"
+          exit "${status}"

@@ -1,0 +1,45 @@
+name: What is obsolete
+description: SDK, Sparkle, deprecated APIs, or the GitHub Actions runner image.
+title: "Obsolete: "
+labels:
+  - obsolete
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Follow `docs/MAINTENANCE.md`. The weekly `obsolete` workflow files the same headings when that workflow is on the default branch. Do not enable Sparkle, notarize, or add a Homebrew cask from this report.
+  - type: textarea
+    id: sdk
+    attributes:
+      label: SDK
+      description: Xcode version, macOS SDK, and MACOSX_DEPLOYMENT_TARGET. ADR-003 minimum is macOS 13. Raising that target is a human decision.
+    validations:
+      required: true
+  - type: textarea
+    id: sparkle
+    attributes:
+      label: Sparkle
+      description: ADR-004. Sparkle stays unlinked on unsigned builds. No SUFeedURL. Do not use spectacleapp.com’s appcast. Record whether a scan of Spectacle, SpectacleSpecs, and the Xcode project found any of those.
+    validations:
+      required: true
+  - type: textarea
+    id: deprecated
+    attributes:
+      label: Deprecated APIs
+      description: List -Wdeprecated-declarations ignores and analyze warnings. ADR-009 keeps a behavior-changing call on the old API until a slice replaces it.
+    validations:
+      required: true
+  - type: textarea
+    id: actions
+    attributes:
+      label: GitHub Actions image
+      description: Runner images pinned in .github/workflows (macos-15, macos-15-intel) and whether those images are still supported. Dependabot bumps action tags; this item is the runner image.
+    validations:
+      required: true
+  - type: checkboxes
+    id: bounds
+    attributes:
+      label: Bounds
+      options:
+        - label: This report does not ask to enable Sparkle, notarize, or add a Homebrew cask.
+          required: true

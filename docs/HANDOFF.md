@@ -4,7 +4,7 @@ A new agent (or human) should be able to continue from a clone of this repositor
 
 You still need nothing from a human to keep building. The public name is **Encore** (`com.amannor.Encore`).
 
-`origin` is `git@github.com:Amannor/encore.git` (https://github.com/Amannor/encore). `upstream` is the archived original. The app builds with Xcode 27 and `SpectacleSpecs` passes. The Slice 6 GUI checklist passed on 2026-10-10. Next work is Slice 7, when asked. Tag `v0.1.0` is the unsigned release. Do not push that tag unless asked. Pushing it publishes the zip.
+`origin` is `git@github.com:Amannor/encore.git` (https://github.com/Amannor/encore). `upstream` is the archived original. The app builds with Xcode 27 and `SpectacleSpecs` passes. The Slice 6 GUI checklist passed on 2026-10-10. Slice 7’s maintenance workflow is in [MAINTENANCE.md](MAINTENANCE.md). The distribution consult was not done. Tag `v0.1.0` is the unsigned release. Do not push that tag unless asked. Pushing it publishes the zip.
 
 ## What this project is
 
@@ -67,6 +67,7 @@ Import tip of archived `master` was `e75c341` (tag `1.2` is `eacf5bb`, an ancest
 | Golden geometry tests, compatibility notes | Slice 4 (done) |
 | Final name, bundle ID, settings importer | Slice 5 (done) |
 | GitHub Release zip + checksums | Slice 6 (done) |
-| Maintenance automation / outreach | Slice 7 |
+| Maintenance workflow | Slice 7 (done). Outreach was not done |
+| In-app updates, notarization, forum posts | After an Apple Developer ID (ADR-013) |
 
 The app target builds on Xcode 27 as a universal binary (macOS 13+, Sparkle unlinked) and `SpectacleSpecs` runs on XCTest. Bundle ID is `com.amannor.Encore`. The built product is `Encore.app`.

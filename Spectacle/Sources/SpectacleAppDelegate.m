@@ -309,7 +309,7 @@
 - (void)enableStatusItem
 {
   _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-  NSImage *statusImage = [NSBundle.mainBundle imageForResource:@"Spectacle Status Item"];
+  NSImage *statusImage = [NSBundle.mainBundle imageForResource:@"Encore Status Item"];
   [statusImage setTemplate:YES];
   NSStatusBarButton *statusButton = _statusItem.button;
   statusButton.image = statusImage;

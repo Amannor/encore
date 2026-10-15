@@ -2,6 +2,33 @@
 
 Architecture Decision Records for this continuation. Newest first within each ID; do not silently reverse these in later slices.
 
+## ADR-013 — In-app updates wait for Developer ID
+
+**Status:** accepted  
+**Date:** 2026-10-15
+
+Encore does not check for updates while the build is ad-hoc. An updater that installs code into an unsigned Accessibility app is the Sparkle risk ADR-004 already rejects.
+
+The shipping original, Spectacle 1.2, is signed `Developer ID Application: Eric Czarny (P8TAT4Q25S)` on 2016-12-22. The git tree is ad-hoc. The zip has no stapled notarization ticket. Its Sparkle feed is `https://spectacleapp.com/updates/appcast.xml`, which this project does not own.
+
+When the maintainer has an Apple Developer Program membership, the update path is Developer ID, notarization, then Sparkle 2 with an appcast hosted by this project. Forum posts wait for that notarized build.
+
+## ADR-012 — Menu-bar mark is a new template
+
+**Status:** accepted  
+**Date:** 2026-10-14
+
+The menu-bar image is the only icon Encore shows. It is now a black spotlight silhouette named `Encore Status Item`, drawn in new files, with `setTemplate:YES`. Eric Czarny’s glasses stay in `Spectacle Status Item.imageset` and are not loaded. The Finder icon is unchanged. This supersedes the menu-bar half of ADR-001. A new build changes the signature hash, so Accessibility must be granted again for that binary.
+
+## ADR-011 — Maintenance checks stay operational
+
+**Status:** accepted  
+**Date:** 2026-10-14
+
+Slice 7 adds a weekly obsolescence issue and Dependabot for GitHub Actions tags. The issue covers the SDK, Sparkle’s continued absence, deprecated APIs, and the Actions runner image. It does not re-enable Sparkle, notarize, or add a Homebrew cask. Distribution outreach stays a separate consult and is not started from the weekly issue.
+
+The schedule and Dependabot read config from the default branch (`main`). Landing the files on `cursor/build-and-xctest` does not start the schedule.
+
 ## ADR-010 — Debug may disable library validation
 
 **Status:** accepted  
@@ -23,7 +50,7 @@ Renames that keep the same values are allowed (modifier masks, control states, a
 **Status:** accepted  
 **Date:** 2026-09-10, finalized 2026-09-30
 
-The public name is **Encore**. It is not “Spectacle.” The menu bar, bundle name, and `Encore.app` use that name. The original app icon is unchanged.
+The public name is **Encore**. It is not “Spectacle.” The menu bar, bundle name, and `Encore.app` use that name. The Finder icon stays the original. The menu-bar template is ADR-012.
 
 ## ADR-002 — Bundle identifier
 
